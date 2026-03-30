@@ -15,7 +15,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required (VERSION 4.1)
 
 set (CMAKE_CXX_STANDARD 11)
 
@@ -67,5 +67,3 @@ add_custom_target(${TRANSLATIONS_TARGET_NAME} ALL DEPENDS ${MO_FILES})
 
 # Create install target.
 install(TARGETS ${TAPTEMPO_PACKAGE_NAME} DESTINATION ${TAPTEMPO_INSTALL_DIR})
-
-
