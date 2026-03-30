@@ -30,7 +30,7 @@ TapTempo::TapTempo(size_t sampleSize, size_t resetTimeInSecond, size_t precision
     {
         this->sampleSize = 1;
     }
-    
+
     if(this->resetTimeInSecond == 0)
     {
         this->resetTimeInSecond = 1;
@@ -68,7 +68,7 @@ int TapTempo::run()
     int returnCode = 0;
 
     printf(gettext("Hit enter key for each beat (q to quit).\n"));
-    
+
     bool shouldContinue = true;
     while (shouldContinue)
     {
@@ -76,7 +76,7 @@ int TapTempo::run()
         do
         {
             i = std::cin.get();
-            if(i == 'q')
+            if(i == 'q' || i == -1)
             {
                 shouldContinue = false;
                 printf(gettext("Bye Bye!\n"));
@@ -87,7 +87,7 @@ int TapTempo::run()
         if(shouldContinue)
         {
             TIME_POINT currentTime = getCurrentTime();
-            
+
             // Reset if the hit diff is too big.
             if(!this->hitTimePoints.empty() && isResetTimeElapsed(currentTime, this->hitTimePoints.back()))
             {
@@ -97,7 +97,7 @@ int TapTempo::run()
                     this->hitTimePoints.pop();
                 }
             }
-            
+
             this->hitTimePoints.push(currentTime);
             if(this->hitTimePoints.size() > 1)
             {
@@ -119,6 +119,6 @@ int TapTempo::run()
             }
         }
     }
-    
+
     return returnCode;
 }
